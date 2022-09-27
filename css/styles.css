@@ -1,0 +1,143 @@
+/*FONTES*/
+@import url('https://fonts.googleapis.com/css2?family=Roboto&display=swap');
+
+/* RESET */
+* {
+    margin:auto;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+
+.body{
+    margin:0;
+    background-image:url(../imagens/background.png)
+}
+
+
+.mainLogin{
+    width:100vw;
+    height:100vh;
+    display:flex;
+    justify-content:center;
+    align-items:center;
+}
+
+
+
+.Login {
+    width: 100vw;
+    height: 100vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
+}
+
+    .Login h1 {
+        color: #12dfca;
+        font-size: 50px;
+        margin-bottom: 55px;
+        font-family: 'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif;
+        text-shadow: 4px 2px 4px #12dfca42;
+    }
+
+.cardLogin {
+    width: 100vw;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    text-align: center;
+    padding: 10px
+}
+
+    .cardLogin a {
+        margin-block:auto;
+        color: aqua;
+        text-decoration: none;
+        font-size: 14px;
+        margin: 10px;
+        animation: fadein 2s;
+        transition: ease-out 0.4s;
+    }
+
+
+.cardLogin a:hover {
+        color: white;
+        text-decoration: none;
+        font-size: 16px;
+        transition: ease-out   1s;
+        margin:auto;
+        
+    }
+
+.textfield{
+    display:flex;
+    flex-direction:column;
+    align-items:flex-start;
+    justify-content:center;
+    margin: 8px;
+
+}
+
+    .textfield input {
+        width: 100%;
+        border: none;
+        border-radius: 8px;
+        padding: 15px;
+        background-color: #181038;
+        box-shadow: 0px 10px 40px #000000;
+        outline: none;
+    }
+        .textfield input:hover {
+            width: 100%;
+            border: none;
+            border-radius: 8px;
+            padding: 15px;
+            background-color: #181038;
+            box-shadow: 0px 10px 40px #000000;
+            outline: none;
+        }
+.textfield label {
+        color: #12dfca;
+        margin-bottom: 9px;
+        font-family:'Segoe UI', Tahoma, Geneva, Verdana, sans-serif
+    }
+
+.btnLogin {
+    
+    width: 100%;
+    max-width:160px;
+    padding: 16px 0px;
+    margin-top:20px;
+    margin-bottom: 20px;
+    border: none;
+    border-radius: 8px;
+    outline: none;
+    text-transform: uppercase;
+    border: 1px solid aqua;
+    background-color: #12dfcacd;
+    background-size: 20px;
+    box-shadow: 0px 10px 40px -30px aqua;
+    cursor: pointer;
+    transition: all 0.5s;
+}
+
+.btnLogin:hover {
+        width: 100%;
+        max-width:170px;
+        padding: 16px 0px;
+        transition: all 0.5s;
+        margin-top: 20px;
+        margin-bottom: 20px;
+        border: none;
+        border-radius: 8px;
+        outline: none;
+        text-transform: uppercase;
+        border: 1px solid aqua;
+        background-color: #52dfdf;
+        background-size: 20px;
+        box-shadow: 0px 10px 40px -30px aqua;
+        cursor: pointer;
+    }
