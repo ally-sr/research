@@ -6,35 +6,34 @@
     <title>Research</title>
     <link rel="stylesheet" type="text/css" href="css/styles.css" media="screen" />
     <link rel="stylesheet" type="text/css" href="css/fade.css" media="screen" />
-    <script src="script/html.js"></script>
-    
+    <script difer src="script.js"> </script>
 </head>
 <body class="body">
 
     <div class="mainLogin">
-        <form>
-            <div class="Login">
-                <div class="cardLogin">
-                    <h1>RESEARCH</h1>
+        <div class="Login">
+            <div class="cardLogin">
+                <h1>RESEARCH</h1>
+                <div class="formbox">
+                    <h2>conecte-se</h2>
                     <div>
-
                         <div class="textfield">
-                            <button class="btnLoginDisc" type="submit"><a href="https://discord.com/api/oauth2/authorize?client_id=1024139369369579612&redirect_uri=http%3A%2F%2Flocalhost%3A80&response_type=code&scope=identify">Entrar com Discord</a></button>
+                            <label for="usuario"></label>
+                            <input type="text" name="usuario" placeholder="usuário" />
                         </div>
                         <div class="textfield">
-                            <button class="btnLogin" type="submit"><a href="https://discord.com/api/oauth2/authorize?client_id=1024139369369579612&redirect_uri=http%3A%2F%2Flocalhost%3A80&response_type=code&scope=identify">entrar com e-mailL</a></button>
+                            <label for="senha"></label>
+                            <input type="password" name="senha" placeholder="senha" />
                         </div>
-                        
-                        <p class="linkslgn1"><a href="#">esqueci minha senha</a></p>
-                        <p class="linkslgn"><a href="#">criar conta</a></p>
                     </div>
+                    <button type="submit"  class="btnLogin">LOGIN</button>
+                    <button class="btnLogin1" href="">LOGIN COM DISCORD</button>
+                    <p class="linkslgn1"><a href="#">esqueci minha senha</a></p>
+                    <p class="linkslgn"><a href="#">criar conta</a></p>
                 </div>
             </div>
-        </form>
-        <script>
-
-
-        </script>
+        </div>
+        
     </div>
 
 </body>
