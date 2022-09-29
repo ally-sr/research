@@ -1,3 +1,5 @@
+
+
 /*FONTES*/
 @import url('https://fonts.googleapis.com/css2?family=Roboto&display=swap');
 
@@ -9,11 +11,16 @@
 }
 
 
-.body{
-    margin:0;
-    background-image:url(../imagens/background.png)
+
+
+.body {
+    width: 100vw;
+    height: 100vh;
+    margin: 0;
+    background-image: url(../imagens/background.png)
 }
 
+/* CORPO E LOGIN */
 
 .mainLogin{
     width:100vw;
@@ -34,110 +41,253 @@
 
 }
 
-    .Login h1 {
+.Login h1 {
+        position:relative;
         color: #12dfca;
         font-size: 50px;
-        margin-bottom: 55px;
+        margin-top:50px;
+        margin-bottom: 68px;
         font-family: 'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif;
         text-shadow: 4px 2px 4px #12dfca42;
     }
 
 .cardLogin {
     width: 100vw;
+    height:100vh;
+    max-height:580px;
+    padding:4px 5px 2px 5px;
     display: flex;
     justify-content: center;
     align-items: center;
     flex-direction: column;
     text-align: center;
-    padding: 10px
+    padding: 10px;
 }
 
-    .cardLogin a {
-        margin-block:auto;
-        color: aqua;
-        text-decoration: none;
-        font-size: 14px;
-        margin: 10px;
-        animation: fadein 2s;
-        transition: ease-out 0.4s;
-    }
+.formbox {
+    width: 100%;
+    max-width:300px;
+    height:100%;
+    max-height:500px;
+    background-color: #0e0058;
+    margin-bottom: 30px;
+    border-radius: 80px 25px;
+    box-shadow: 0px 9px 40px -12px black;
+}
+.formbox h2{
+    color:aqua;
+    margin:30px;
+    margin-bottom:30px;
+    font-family:sans-serif;
+}
+.linkslgn1 a {
+    margin-block: auto;
+    color: #ece8e8;
+    font-size: 12px;
+    text-decoration: none;
+    margin: 10px;
+    animation: fadein 2s;
+    font-family: sans-serif;
+    transition: ease-out 0.4s;
+}
+.linkslgn a {
+    margin-top: 30px;
+    color: #ece8e8;
+    font-size: 12px;
+    text-decoration: none;
+    margin: 10px;
+    animation: fadein 2s;
+    transition: ease-out 0.4s;
+    font-family: sans-serif;
+}
 
-
-.cardLogin a:hover {
+    .linkslgn a:hover {
         color: white;
-        text-decoration: none;
-        font-size: 16px;
-        transition: ease-out   1s;
-        margin:auto;
-        
+        font-size: 13px;
+        text-decoration: underline;
+        transition: ease-out 1s;
+        margin: auto;
+    }
+.linkslgn1 a:hover {
+        color: white;
+        text-decoration:underline;
+        font-size: 13px;
+        transition: ease-out 1s;
+        margin: auto;
     }
 
-.textfield{
-    display:flex;
-    flex-direction:column;
-    align-items:flex-start;
-    justify-content:center;
-    margin: 8px;
 
+.textfield {
+    width:70%;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    margin:auto;
+    text-decoration: none;
 }
 
-    .textfield input {
+.textfield input {
         width: 100%;
         border: none;
-        border-radius: 8px;
-        padding: 15px;
-        background-color: #181038;
-        box-shadow: 0px 10px 40px #000000;
-        outline: none;
-    }
-        .textfield input:hover {
-            width: 100%;
-            border: none;
-            border-radius: 8px;
-            padding: 15px;
-            background-color: #181038;
-            box-shadow: 0px 10px 40px #000000;
-            outline: none;
-        }
-.textfield label {
-        color: #12dfca;
-        margin-bottom: 9px;
-        font-family:'Segoe UI', Tahoma, Geneva, Verdana, sans-serif
+        border-radius: 22px;
+        padding: 14px;
+        background-color: #331da9;
+        margin-bottom:10px;
     }
 
+.textfield input::placeholder {
+        color:white;
+    }
+
+.textfield input::after{
+    border:0.5px solid purple;
+    transition: .3s ease-in-out;
+}
+
+
+
 .btnLogin {
-    
     width: 100%;
-    max-width:160px;
-    padding: 16px 0px;
-    margin-top:20px;
-    margin-bottom: 20px;
-    border: none;
-    border-radius: 8px;
+    max-width: 140px;
+    padding: 9px;
+    margin-top: 8px;
+    margin-bottom: 2px;
+    border: 1px solid #0e0058;
+    border-radius: 28px;
     outline: none;
     text-transform: uppercase;
     border: 1px solid aqua;
     background-color: #12dfcacd;
     background-size: 20px;
-    box-shadow: 0px 10px 40px -30px aqua;
+    box-shadow: 0px 10px 40px -10px #0e0058;
     cursor: pointer;
     transition: all 0.5s;
+    font-size: 14px;
+    font-family: sans-serif;
 }
 
 .btnLogin:hover {
         width: 100%;
-        max-width:170px;
-        padding: 16px 0px;
+        max-width: 142px;
+        padding: 9px;
         transition: all 0.5s;
-        margin-top: 20px;
-        margin-bottom: 20px;
+        margin-top: 8px;
+        margin-bottom: 2px;
         border: none;
-        border-radius: 8px;
+        border-radius: 28px;
         outline: none;
         text-transform: uppercase;
         border: 1px solid aqua;
         background-color: #52dfdf;
         background-size: 20px;
-        box-shadow: 0px 10px 40px -30px aqua;
+        box-shadow: 0px 10px 40px -10px aqua;
         cursor: pointer;
+        font-size: 14px;
+        font-family: sans-serif;
+}
+
+
+.btnLogin1 {
+    width: 100%;
+    max-width: 158px;
+    padding: 10px 4px;
+    margin-top: 10px;
+    margin-bottom: 9px;
+    border: none;
+    border-radius: 28px;
+    outline: none;
+    text-transform: uppercase;
+    border: 1px solid #404eed;
+    background-color: #404eed;
+    background-size: 20px;
+    box-shadow: 0px 10px 40px -10px #515de1;
+    cursor: pointer;
+    transition: all 0.5s;
+    font-size: 13px;
+    font-family: sans-serif;
+    color: #07002b;
+}
+
+    .btnLogin1:hover {
+        width: 100%;
+        max-width: 162px;
+        padding: 10px 4px;
+        transition: all 0.5s;
+        margin-top: 10px;
+        margin-bottom: 6px;
+        border-radius: 28px;
+        outline: none;
+        border: 1px solid #5562f5;
+        background-color: #5562f5;
+        background-size: 20px;
+        box-shadow: 0px 10px 40px -10px #9658e3;
+        cursor: pointer;
+        font-size: 13px;
+        font-family: sans-serif;
     }
+
+/*   #NAV DASHBOARD  */
+
+.menu ul {
+    width: 100%;
+    animation: fadein 2s;
+    text-align: center;
+    position: relative;
+    margin:auto;
+    box-shadow: black;
+    font-family: sans-serif;
+    background-color:#0e0058;
+}
+
+.menu ul li {
+        width: 100%;
+        display: inline;
+        font-family: sans-serif;
+        position: relative;
+        animation: fadein 2s;
+        position: relative;
+        left: -40px;
+    }
+
+    .menu ul li a {
+        color: #bdbdbd;
+        padding: 14px;
+        display: inline-block;
+        text-decoration: none;
+        transition: ease-out 0.8s;
+        animation: fadein 2s;
+        margin-left: 20px;
+    }
+
+    .menu ul li a:hover {
+        color: white;
+        padding: 14px;
+        border: groove white;
+        border-radius: 5px;
+        display: inline-block;
+        text-decoration: none;
+        transition: ease-in-out 0.2s;
+        animation: fadein 2s;
+}
+
+/*CORPO DASHBOARD*/
+
+.upperpanel{
+    justify-content:center;
+    align-items:center;
+    align-content:center;
+    width:100vw;
+    height:100vh;
+    max-width:900px;
+    max-height:360px;
+    animation: fadein 2s;
+}
+.upperpanel h1{
+    text-align:center;
+    margin-top:90px;
+    font-family:sans-serif;
+    color:#dcdcdc;
+}
+.lsr{
+    color:aqua;
+}
