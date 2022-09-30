@@ -6,7 +6,7 @@
     <title>Research</title>
     <link rel="stylesheet" type="text/css" href="css/styles.css" media="screen" />
     <link rel="stylesheet" type="text/css" href="css/fade.css" media="screen" />
-    <script difer src="script.js"> </script>
+  
 </head>
 <body class="body">
 
@@ -20,18 +20,32 @@
                         <div>
                             <div class="textfield">
                                 <label for="usuario"></label>
-                                <input type="text" name="usuario" placeholder="usuário" />
+                                <input type="text" id="login" name="usuario" placeholder="usuário" />
                             </div>
                             <div class="textfield">
                                 <label for="senha"></label>
-                                <input type="password" name="senha" placeholder="senha" />
+                                <input type="password" id="senha" name="senha" placeholder="senha" />
                             </div>
                         </div>
                     </form>
-                    <button type="submit" class="btnLogin">LOGIN</button>
+                    <button type="submit" onclick="logar();return false"  class="btnLogin">LOGIN</button>
                     <button class="btnLogin1" href="">LOGIN COM DISCORD</button>
                     <p class="linkslgn"><a href="#">criar conta</a></p>
                     <p class="linkslgn1"><a href="#">esqueci minha senha</a></p>
+                    <script>
+                        function logar() {
+                        var login = document.getElementById('login').value;
+                        var senha = document.getElementById('senha').value;
+
+                            if (login == "admin" && senha == "admin") {
+                                alert('Sucesso');
+                                location.href = "dashboard.html";
+                            } else {
+                                alert('Usuário ou senha incorretos')
+                            }
+                        }
+                    </script>
+
                 </div>
             </div>
         </div>
