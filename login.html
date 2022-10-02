@@ -28,23 +28,38 @@
                             </div>
                         </div>
                     </form>
-                    <button type="submit" onclick="logar();return false"  class="btnLogin">LOGIN</button>
+                    <button type="submit" onclick="logar();return false" class="btnLogin">LOGIN</button>
                     <button class="btnLogin1" href="">LOGIN COM DISCORD</button>
                     <p class="linkslgn"><a href="#">criar conta</a></p>
                     <p class="linkslgn1"><a href="#">esqueci minha senha</a></p>
-                    <script>
-                        function logar() {
+
+                    <html>
+                    <head>
+                        <title>hCaptcha Demo</title>
+                        <script src="https://js.hcaptcha.com/1/api.js" async defer></script>
+                    </head>
+                    <body>
+                        <form action="" method="POST">
+                            <div class="h-captcha" data-sitekey="0x9A39C1E44c764Bb68E708f8221e5C9cfeCFD040F"></div>
+                            <br />
+                        </form>
+                    </body>
+                </html>
+
+                <script>
+                    function logar() {
                         var login = document.getElementById('login').value;
                         var senha = document.getElementById('senha').value;
 
-                            if (login == "admin" && senha == "admin") {
-                                alert('Sucesso');
-                                location.href = "dashboard.html";
-                            } else {
-                                alert('Usuário ou senha incorretos')
-                            }
+                        if (login == "admin" && senha == "admin") {
+                            alert('Sucesso');
+                            location.href = "dashboard.html";
+                        } else {
+                            alert('Usuário ou senha incorretos')
                         }
-                    </script>
+                    }
+
+                </script>
 
                 </div>
             </div>
