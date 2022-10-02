@@ -38,7 +38,18 @@
     </header>
     <div class="upperpanel">
         <h1> Open Interest </h1>
-        <script class="lsr" src="app.js"></script>
+         <script>
+             const url = 'https://fapi.binance.com/fapi/v1/'
+             const openI = 'openInterest?symbol=ADAUSDT&limite=1'
+
+            fetch(url + openI)
+                .then(function (response) {
+                    return response.json()
+                })
+                .then(function (data) {
+                    console.log(data)
+                })
+        </script>
     </div>
     <div class="lowerpanel">
 

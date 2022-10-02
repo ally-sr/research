@@ -308,6 +308,7 @@
 
 /* MEDIA QUERYS */
 
+/* LOGIN PAGE*/
 @media only screen and (max-width:950px) {
 
     .cardLogin {
@@ -375,4 +376,34 @@
     .btnLogin {
         margin-top: 30px;
     }
+
+    /* DASHBOARD */
+
+
+    .upperpanel {
+        justify-content: center;
+        align-items: center;
+        align-content: center;
+        width: 100vw;
+        height: 100vh;
+        max-height: 360px;
+        animation: fadein 2s;
+    }
+
+    .upperpanel h1 {
+            text-align: center;
+            margin-top: 90px;
+            font-family: sans-serif;
+            color: #dcdcdc;
+        }
+
+    .lsr {
+        color: aqua;
+    }
+
+
+
+
 }
+
+
