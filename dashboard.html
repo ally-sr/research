@@ -7,6 +7,7 @@
     <link rel="stylesheet" type="text/css" href="css/styles.css" media="screen" />
     <link rel="stylesheet" type="text/css" href="css/fade.css" media="screen" />
     <element onload="script">
+
 </head>
 <body class="body">
     <nav class="menu">
@@ -60,211 +61,164 @@
     </section>
     <section class="section2">
         <div class="lowerpanel">
-            <table class="lowerlsr">
-                <thead>
-                    <tr>
-                        <th>Symbol</th>
-                        <th>LSR</th>
-                        <th>15m Δ</th>
-                        <th>15m Δ%</th>
-                        <th>1h Δ</th>
-                        <th>1h Δ%</th>
-                        <th>4h Δ</th>
-                        <th>4h Δ%</th>
-                        <th>24h Δ</th>
-                        <th>24h Δ%</th>
-
-
-                    </tr>
-                </thead>
-                <tbody>
-                    <!-- btcusdt -->
-                    <tr>
-                        <th><span id="btcusdt"></span></th>
-                        <th><span id="LSR"></span></th>
-                        <th><span id="15mlsr"></span></th>
-                        <th><span id="15mplsr"></span></th>
-                        <th><span id="1hlsr"></span></th>
-                        <th><span id="1hplsr"></span></th>
-                        <th><span id="4hlsr"></span></th>
-                        <th><span id="4hplsr"></span></th>
-                        <th><span id="24hlsr"></span></th>
-                        <th><span id="24hplsr"></span></th>
-                    </tr>
-                    <!-- zilusdt -->
-                    <tr>
-                        <th><span id="zilusdt"></span></th>
-                        <th><span id="lsrglobalZILUSDT"></span></th>
-                        <th><span id="15mlsrZILUSDT"></span></th>
-                        <th><span id="15mplsrZILUSDT"></span></th>
-                        <th><span id="1hlsrZILUSDT"></span></th>
-                        <th><span id="1hplsrZILUSDT"></span></th>
-                        <th><span id="4hlsrZILUSDT"></span></th>
-                        <th><span id="4hplsrZILUSDT"></span></th>
-                        <th><span id="24hlsrZILUSDT"></span></th>
-                        <th><span id="24hplsrZILUSDT"></span></th>
-                    </tr>
-                </tbody>
-
+            <table id="lowerlsr">
             </table>
         </div>
     </section>
-    
+    <script src="script/lista.js"></script>
     <script>
-        // BTCUSDT
-        const urlvalue = 'https://fapi.binance.com/futures/data/'
-        const ratiovalue = 'globalLongShortAccountRatio?symbol=BTCUSDT&period=15m'
-        const urlvalue4hr = 'https://fapi.binance.com/futures/data/'
-        const ratiovalue4hr = 'globalLongShortAccountRatio?symbol=BTCUSDT&period=4h'
-        const urlvalue1hr = 'https://fapi.binance.com/futures/data/'
-        const ratiovalue1hr = 'globalLongShortAccountRatio?symbol=BTCUSDT&period=1h'
-        const urlvalue24hr = 'https://fapi.binance.com/futures/data/'
-        const ratiovalue24hr = 'globalLongShortAccountRatio?symbol=BTCUSDT&period=1d'
-        fetch(urlvalue + ratiovalue)
-            .then(function (response) {
-                return response.json()
-            })
-            .then(function (data) {
-                const initialvalue15m = parseFloat(data.at(28)['longShortRatio'])
-                const finalvalue15m = parseFloat(data.at(29)['longShortRatio'])
-                const variation15min = finalvalue15m - initialvalue15m
-                const percentage15min = ((finalvalue15m / initialvalue15m) - 1) * 100
-                const lsrgvalue = data.at(29)['longShortRatio']
-                const tstmp = data.at(29)['timestamp']
-                const dtlsr = new Date(tstmp)
-                document.getElementById('lsrglobal').
-                    innerHTML = parseFloat(lsrgvalue).toFixed(3)
-                document.getElementById('LSR').
-                    innerHTML = parseFloat(lsrgvalue).toFixed(3)
-                document.getElementById('btcusdt').
-                    innerHTML = data[5]['symbol']
-                document.getElementById('timestamplsrg').
-                    innerHTML = dtlsr.toLocaleString()
-                document.getElementById('15mlsr').
-                    innerHTML = variation15min.toFixed(3)
-                document.getElementById('15mplsr').
-                    innerHTML = percentage15min.toFixed(2)+'%'
 
-                fetch(urlvalue4hr + ratiovalue4hr)
-                    .then(function (response) {
-                        return response.json()
-                    }).then(function (data2) {
-                        const initialvalue4h = parseFloat(data2.at(28)['longShortRatio'])
-                        const finalvalue4h = parseFloat(data2.at(29)['longShortRatio'])
-                        const variation4h = finalvalue4h - initialvalue4h
-                        const percentage4h = ((finalvalue4h/initialvalue4h) -1 )*100
-                        document.getElementById('alt4h').
-                            innerHTML = parseFloat(percentage4h).toFixed(2) + '%'
-                        document.getElementById('4hlsr').
-                            innerHTML = parseFloat(variation4h).toFixed(3)
-                        document.getElementById('4hplsr').
-                            innerHTML = parseFloat(percentage4h).toFixed(2) + '%'
-                    })
-                fetch(urlvalue1hr + ratiovalue1hr)
-                    .then(function (response) {
-                        return response.json()
-                    }).then(function (data3) {
-                        const initialvalue1h = parseFloat(data3.at(28)['longShortRatio'])
-                        const finalvalue1h = parseFloat(data3.at(29)['longShortRatio'])
-                        const variation1h = finalvalue1h - initialvalue1h
-                        const percentage1h = ((finalvalue1h / initialvalue1h) - 1) * 100
-                        document.getElementById('1hlsr').
-                            innerHTML = parseFloat(variation1h).toFixed(3)
-                        document.getElementById('1hplsr').
-                            innerHTML = parseFloat(percentage1h).toFixed(2) + '%'
-                    })
-                fetch(urlvalue24hr + ratiovalue24hr)
-                    .then(function (response) {
-                        return response.json()
-                    }).then(function (data4) {
-                        const initialvalue24h = parseFloat(data4.at(28)['longShortRatio'])
-                        const finalvalue24h = parseFloat(data4.at(29)['longShortRatio'])
-                        const variation24h = finalvalue24h - initialvalue24h
-                        const percentage24h = ((finalvalue24h / initialvalue24h) - 1) * 100
-                        document.getElementById('24hlsr').
-                            innerHTML = parseFloat(variation24h).toFixed(3)
-                        document.getElementById('24hplsr').
-                            innerHTML = parseFloat(percentage24h).toFixed(2) + '%'
-                    })
 
-                    
-            })
+        //CREATING TABLE
 
-            // ZILUSDT
-        const urlvalueZILUSDT = 'https://fapi.binance.com/futures/data/'
-        const ratiovalueZILUSDT = 'globalLongShortAccountRatio?symbol=ZILUSDT&period=15m'
-        const urlvalue4hrZILUSDT = 'https://fapi.binance.com/futures/data/'
-        const ratiovalue4hrZILUSDT = 'globalLongShortAccountRatio?symbol=ZILUSDT&period=4h'
-        const urlvalue1hrZILUSDT = 'https://fapi.binance.com/futures/data/'
-        const ratiovalue1hrZILUSDT = 'globalLongShortAccountRatio?symbol=ZILUSDT&period=1h'
-        const urlvalue24hrZILUSDT = 'https://fapi.binance.com/futures/data/'
-        const ratiovalue24hrZILUSDT = 'globalLongShortAccountRatio?symbol=ZILUSDT&period=1d'
-        fetch(urlvalueZILUSDT + ratiovalueZILUSDT)
-            .then(function (response) {
-                return response.json()
-            })
-            .then(function (data5) {
-                const initialvalue = parseFloat(data5.at(28)['longShortRatio'])
-                const finalvalue = parseFloat(data5.at(29)['longShortRatio'])
-                const variation = finalvalue - initialvalue
-                const percentage = ((finalvalue / initialvalue) - 1) * 100
-                document.getElementById('zilusdt').
-                    innerHTML = data5.at(28)['symbol']
-                document.getElementById('15mlsrZILUSDT').
-                    innerHTML = parseFloat(variation).toFixed(3)
-                document.getElementById('15mplsrZILUSDT').
-                    innerHTML = parseFloat(percentage).toFixed(2) + '%'
-                document.getElementById('lsrglobalZILUSDT').
-                    innerHTML = finalvalue.toFixed(3)
-            })
-        fetch(urlvalue1hrZILUSDT + ratiovalue1hrZILUSDT)
-            .then(function (response) {
-                return response.json()
-            })
-            .then(function (data6) {
-                const initialvalue1h = parseFloat(data6.at(28)['longShortRatio'])
-                const finalvalue1h = parseFloat(data6.at(29)['longShortRatio'])
-                const variation1h = finalvalue1h - initialvalue1h
-                const percentage1h = ((finalvalue1h / initialvalue1h) - 1) * 100
-                document.getElementById('1hlsrZILUSDT').
-                    innerHTML = parseFloat(variation1h).toFixed(3)
-                document.getElementById('1hplsrZILUSDT').
-                    innerHTML = parseFloat(percentage1h).toFixed(2) + '%'
+        function criaTag(elemento) {
+            return document.createElement(elemento)
+        }
 
-            })
-        fetch(urlvalue4hrZILUSDT + ratiovalue4hrZILUSDT)
-            .then(function (response) {
-                return response.json()
-            })
-            .then(function (data7) {
-                const initialvalue4h = parseFloat(data7.at(28)['longShortRatio'])
-                const finalvalue4h = parseFloat(data7.at(29)['longShortRatio'])
-                const variation4h = finalvalue4h - initialvalue4h
-                const percentage4h = ((finalvalue4h / initialvalue4h) - 1) * 100
-                document.getElementById('4hlsrZILUSDT').
-                    innerHTML = parseFloat(variation4h).toFixed(3)
-                document.getElementById('4hplsrZILUSDT').
-                    innerHTML = parseFloat(percentage4h).toFixed(2) + '%'
+        let table = document.getElementById('lowerlsr')
 
-            })
-        fetch(urlvalue24hrZILUSDT + ratiovalue24hrZILUSDT)
-            .then(function (response) {
-                return response.json()
-            })
-            .then(function (data8) {
-                const initialvalue24h = parseFloat(data8.at(28)['longShortRatio'])
-                const finalvalue24h = parseFloat(data8.at(29)['longShortRatio'])
-                const variation24h = finalvalue24h - initialvalue24h
-                const percentage24h = ((finalvalue24h / initialvalue24h) - 1) * 100
-                document.getElementById('24hlsrZILUSDT').
-                    innerHTML = parseFloat(variation24h).toFixed(3)
-                document.getElementById('24hplsrZILUSDT').
-                    innerHTML = parseFloat(percentage24h).toFixed(2) + '%'
+        let thead = criaTag("thead")
+        let tbody = criaTag("tbody")
+        let tfoot = criaTag("tfoot")
 
-            })
+        let indicesTabela = ["SYMBOL", "LSR", "Δ15m", "Δ15m%", "Δ1h", "Δ1h%", "Δ4h", "Δ4h%", "Δ24h", "Δ24h%"]
+        let linhaHead = criaTag("tr")
+
+        function criaCelula(tag, text) {
+            tag = criaTag(tag);
+            tag.textContent = text;
+            return tag;
+        }
+
+        for (let j = 0; j < indicesTabela.length; j++) {
+            let th = criaCelula("th", indicesTabela[j]);
+            linhaHead.appendChild(th);
+        }
+        thead.appendChild(linhaHead)
+
+        table.appendChild(thead)
+        table.appendChild(tbody)
+        table.appendChild(tfoot)
+
+        linhasTabela.forEach(i => {
+
+
+            // API LINKS
+            const base = 'https://fapi.binance.com/futures/data/'
+            const quinzeMinutos = base + 'globalLongShortAccountRatio?symbol=' + i + '&period=15m'
+            const umaHora = base + 'globalLongShortAccountRatio?symbol=' + i + '&period=1h'
+            const quatroHoras = base + 'globalLongShortAccountRatio?symbol=' + i + '&period=4h'
+            const umDia = base + 'globalLongShortAccountRatio?symbol=' + i + '&period=1d'
+
+            // FETCHING DATA
+
+            fetch(quinzeMinutos)
+                .then(function (response) {
+                    return response.json()
+                }).then(function (dataQuinzeM) {
+                    dadosRecentesQuinzeM = Object.values(dataQuinzeM.at(29))
+                    dadosAnterioresQuinzeM = Object.values(dataQuinzeM.at(28))
+
+                    moeda = dadosRecentesQuinzeM[0]
+                    longShortRatioQuinzeM = dadosRecentesQuinzeM[2]
+                    longShortRatioAnteriorQuinzeM = dadosAnterioresQuinzeM[2]
+
+                    varianciaQuinzeMinutos = (longShortRatioQuinzeM - longShortRatioAnteriorQuinzeM).toFixed(3)
+                    varianciaQuinzeMinutosPorcento = (((longShortRatioQuinzeM / longShortRatioAnteriorQuinzeM) - 1) * 100).toFixed(2) + '%'
+
+                }).then(
+                    fetch(umaHora)
+                        .then(function (response) {
+                            return response.json()
+                        }).then(function (dataUmaH) {
+
+                            dadosRecentesUmaH = Object.values(dataUmaH.at(29))
+                            dadosAnterioresUmaH = Object.values(dataUmaH.at(28))
+
+                            longShortRatioUmaH = dadosRecentesUmaH[2]
+                            longShortRatioAnteriorUmaH = dadosAnterioresUmaH[2]
+
+                            varianciaUmaH = (longShortRatioUmaH - longShortRatioAnteriorUmaH).toFixed(3)
+                            varianciaUmaHPorcento = (((longShortRatioUmaH / longShortRatioAnteriorUmaH) - 1) * 100).toFixed(2) + '%'
+
+                        }).then(
+                            fetch(quatroHoras)
+                                .then(function (response) {
+                                    return response.json()
+                                }).then(function (dataQuatroH) {
+
+                                    dadosRecentesQuatroH = Object.values(dataQuatroH.at(29))
+                                    dadosAnterioresQuatroH = Object.values(dataQuatroH.at(28))
+
+                                    longShortRatioQuatroH = dadosRecentesQuatroH[2]
+                                    longShortRatioAnteriorQuatroH = dadosAnterioresQuatroH[2]
+
+                                    varianciaQuatroH = (longShortRatioQuatroH - longShortRatioAnteriorQuatroH).toFixed(3)
+                                    varianciaQuatroHPorcento = (((longShortRatioQuatroH / longShortRatioAnteriorQuatroH) - 1) * 100).toFixed(2) + '%'
+
+                                })
+                                .then(
+                                    fetch(umDia)
+                                        .then(function (response) {
+                                            return response.json()
+                                        }).then(function (dataUmDia) {
+
+                                            dadosRecentesUmDia = Object.values(dataUmDia.at(29));
+                                            dadosAnterioresUmDia = Object.values(dataUmDia.at(28))
+
+                                            longShortRatioUmDia = dadosRecentesUmDia[2]
+                                            longShortRatioAnteriorUmDia = dadosAnterioresUmDia[2]
+
+                                            varianciaUmDia = (longShortRatioUmDia - longShortRatioAnteriorUmDia).toFixed(3)
+                                            varianciaUmDiaPorcento = (((longShortRatioUmDia / longShortRatioAnteriorUmDia) - 1) * 100).toFixed(2) + '%'
+
+                                            var lista = new Array(moeda, varianciaQuinzeMinutos, varianciaQuinzeMinutosPorcento, varianciaUmaH, varianciaUmaHPorcento, varianciaQuatroH, varianciaQuatroHPorcento, varianciaUmDia, varianciaUmDiaPorcento)
+                                            var linhasTabela = new Array(lista)
+                                            for (let j = 0; j < linhasTabela.length; j++) {
+                                               // console.log(linhasTabela[j])
+                                                linhaBody = criaTag("tr") 
+                                                
+                                                for (let i = 0; i < linhasTabela.length; i++) {
+                                                    // console.log(linhasTabela[j][i])
+                                                    cel = criaCelula("td", linhasTabela[j][i]);
+                                                    cel2 = criaCelula("td", linhasTabela[j][i + 1])
+                                                    cel3 = criaCelula("td", linhasTabela[j][i + 2])
+                                                    cel4 = criaCelula("td", linhasTabela[j][i + 3])
+                                                    cel5 = criaCelula("td", linhasTabela[j][i + 4])
+                                                    cel6 = criaCelula("td", linhasTabela[j][i + 5])
+                                                    cel7 = criaCelula("td", linhasTabela[j][i + 6])
+                                                    cel8 = criaCelula("td", linhasTabela[j][i + 7])
+                                                    cel9 = criaCelula("td", linhasTabela[j][i + 8])
+                                                    cel10 = criaCelula("td", linhasTabela[j][i + 8])
+
+                                                    linhaBody.appendChild(cel)
+                                                    linhaBody.appendChild(cel2)
+                                                    linhaBody.appendChild(cel3)
+                                                    linhaBody.appendChild(cel4)
+                                                    linhaBody.appendChild(cel5)
+                                                    linhaBody.appendChild(cel6)
+                                                    linhaBody.appendChild(cel7)
+                                                    linhaBody.appendChild(cel8)
+                                                    linhaBody.appendChild(cel9)
+                                                    linhaBody.appendChild(cel10)
+                                                }
+                                                tbody.appendChild(linhaBody);
+                                            }
+
+
+                                        })
+
+
+                                ))
+                    )
+        })
+
+
+
     </script>
     <footer>
-
     </footer>
 </body>
 </html>
+
+      
