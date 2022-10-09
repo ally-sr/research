@@ -119,7 +119,6 @@
                     dadosRecentesQuinzeM = Object.values(dataQuinzeM.at(29))
                     dadosAnterioresQuinzeM = Object.values(dataQuinzeM.at(28))
 
-                    moeda = dadosRecentesQuinzeM[0]
                     longShortRatioQuinzeM = dadosRecentesQuinzeM[2]
                     longShortRatioAnteriorQuinzeM = dadosAnterioresQuinzeM[2]
 
@@ -172,6 +171,8 @@
                                             varianciaUmDia = (longShortRatioUmDia - longShortRatioAnteriorUmDia).toFixed(3)
                                             varianciaUmDiaPorcento = (((longShortRatioUmDia / longShortRatioAnteriorUmDia) - 1) * 100).toFixed(2) + '%'
 
+                                            moeda = dadosRecentesUmDia[0]
+
                                             var lista = new Array(moeda, varianciaQuinzeMinutos, varianciaQuinzeMinutosPorcento, varianciaUmaH, varianciaUmaHPorcento, varianciaQuatroH, varianciaQuatroHPorcento, varianciaUmDia, varianciaUmDiaPorcento)
                                             var linhasTabela = new Array(lista)
                                             for (let j = 0; j < linhasTabela.length; j++) {
@@ -180,7 +181,7 @@
                                                 
                                                 for (let i = 0; i < linhasTabela.length; i++) {
                                                     // console.log(linhasTabela[j][i])
-                                                    cel = criaCelula("td", linhasTabela[j][i]);
+                                                    cel1 = criaCelula("td", linhasTabela[j][i])
                                                     cel2 = criaCelula("td", linhasTabela[j][i + 1])
                                                     cel3 = criaCelula("td", linhasTabela[j][i + 2])
                                                     cel4 = criaCelula("td", linhasTabela[j][i + 3])
@@ -191,7 +192,7 @@
                                                     cel9 = criaCelula("td", linhasTabela[j][i + 8])
                                                     cel10 = criaCelula("td", linhasTabela[j][i + 8])
 
-                                                    linhaBody.appendChild(cel)
+                                                    linhaBody.appendChild(cel1)
                                                     linhaBody.appendChild(cel2)
                                                     linhaBody.appendChild(cel3)
                                                     linhaBody.appendChild(cel4)
