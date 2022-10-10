@@ -380,11 +380,34 @@ p {
     border-radius:30px;
     width:1%
 }
-#lowerlsr {
+
+    #loweroi thead tr {
+        color: #ece8e8;
+        text-align: center;
+        font-weight: bold;
+        width: 3%;
+    }
+
+    #loweroi tbody {
+        color: #ece8e8;
+        text-align: center;
+        font-weight: bold;
+        width: 3%;
+    }
+
+    #loweroi th, td {
+        margin-top: 20px;
+        padding: 9px 35px;
+        border: 1px solid #404eed;
+        border-radius: 30px;
+        width: 1%
+    }
+
+#loweroi {
     width: 100%;
     max-width: 90%;
     font-size: 0.7em;
-    margin:auto;
+    margin: auto;
 }
 
 footer {

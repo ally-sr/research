@@ -48,7 +48,7 @@
                     <tr>
                         <th>OI Global: <span id="oiglobal"> </span></th>
                         <th>4h Δ: <span id="oialt4h"> </span></th>
-                        
+
                     </tr>
                     <tr>
                         <th>OI Global Positions: <span id="oiglobalposi"> </span></th>
@@ -62,7 +62,7 @@
     </section>
     <section class="section2">
         <div class="lowerpanel">
-            <table class="lowerlsr">
+            <table id="loweroi">
                 <thead>
                     <tr>
                         <th>Symbol</th>
@@ -79,109 +79,176 @@
 
                     </tr>
                 </thead>
-                <tbody>
-                    <!-- btcusdt -->
-                    <tr>
-                        <th><span id="btcusdt"></span></th>
-                        <th><span id="OI"></span></th>
-                        <th><span id="15moi"></span></th>
-                        <th><span id="15mpoi"></span></th>
-                        <th><span id="1hoi"></span></th>
-                        <th><span id="1hpoi"></span></th>
-                        <th><span id="4hoi"></span></th>
-                        <th><span id="4hpoi"></span></th>
-                        <th><span id="24hoi"></span></th>
-                        <th><span id="24hpoi"></span></th>
-                    </tr>
-                    <!-- zilusdt -->
-                   
-                </tbody>
+
 
             </table>
         </div>
     </section>
+    <script src="script/lista.js"></script>
     <script>
-        // BTCUSDT
-        const urlvalue = 'https://fapi.binance.com/futures/data/'
-        const ratiovalue = 'openInterestHist?symbol=BTCUSDT&period=15m'
-        const urlvalue4hr = 'https://fapi.binance.com/futures/data/'
-        const ratiovalue4hr = 'openInterestHist?symbol=BTCUSDT&period=4h'
-        const urlvalue1hr = 'https://fapi.binance.com/futures/data/'
-        const ratiovalue1hr = 'openInterestHist?symbol=BTCUSDT&period=1h'
-        const urlvalue24hr = 'https://fapi.binance.com/futures/data/'
-        const ratiovalue24hr = 'openInterestHist?symbol=BTCUSDT&period=1d'
-        fetch(urlvalue + ratiovalue)
-            .then(function (response) {
-                return response.json()
-            })
-            .then(function (data) {
-                const earlyopeninterestvalue = parseInt(data.at(28)['sumOpenInterestValue'])
-                const finalopeninterestvalue = parseInt(data.at(29)['sumOpenInterestValue'])
-                const finalopeninterestpositions = parseInt(data.at(29)['sumOpenInterestValue'])
-                const openinterestvaluevar = finalopeninterestvalue - earlyopeninterestvalue
-                const openinterestvaluevarp = (finalopeninterestvalue / earlyopeninterestvalue -1 ) * 100
-                const tstmp = data.at(29)['timestamp']
-                const dtoi = new Date(tstmp)
-                document.getElementById('oiglobal').
-                    innerHTML = finalopeninterestvalue
-                document.getElementById('oiglobalposi').
-                    innerHTML = finalopeninterestpositions
-                document.getElementById('btcusdt').
-                    innerHTML = data.at(29)['symbol']
-                document.getElementById('OI').
-                    innerHTML = finalopeninterestvalue
-                document.getElementById('timestamplsrg').
-                    innerHTML = dtoi.toLocaleString()
-                document.getElementById('15moi').
-                    innerHTML = openinterestvaluevar
-                document.getElementById('15mpoi').
-                    innerHTML = openinterestvaluevarp.toFixed(2)+'%'
-            })
-        fetch(urlvalue1hr + ratiovalue1hr)
+
+
+        //CREATING TABLE
+
+        function criaTag(elemento) {
+            return document.createElement(elemento)
+        }
+
+        let table = document.getElementById('loweroi')
+
+        //let thead = criaTag("thead")
+        let tbody = criaTag("tbody")
+        let tfoot = criaTag("tfoot")
+
+        // let indicesTabela = ["SYMBOL", "LSR", "Δ15m", "Δ15m%", "Δ1h", "Δ1h%", "Δ4h", "Δ4h%", "Δ24h", "Δ24h%"]
+        //let linhaHead = criaTag("tr")
+
+        function criaCelula(tag, text) {
+            tag = criaTag(tag);
+            tag.textContent = text;
+            return tag;
+        }
+
+        // for (let j = 0; j < indicesTabela.length; j++) {
+        //     let th = criaCelula("th", indicesTabela[j]);
+        //     linhaHead.appendChild(th);
+        // }
+        // thead.appendChild(linhaHead)
+
+        //  table.appendChild(thead)
+        table.appendChild(tbody)
+        table.appendChild(tfoot)
+
+
+        linhasTabela.forEach(i => {
+
+
+            // API LINKS
+            const base = 'https://fapi.binance.com/futures/data/'
+            const quinzeMinutos = base + 'openInterestHist?symbol=' + i + '&period=15m'
+            const umaHora = base + 'openInterestHist?symbol=' + i + '&period=1h'
+            const quatroHoras = base + 'openInterestHist?symbol=' + i + '&period=4h'
+            const umDia = base + 'openInterestHist?symbol=' + i + '&period=1d'
+
+            // FETCHING DATA
+
+            fetch(quinzeMinutos)
                 .then(function (response) {
-                return response.json()
-              })
-                .then(function (data2) {
-                const earlyopeninterestvalue = parseInt(data2.at(28)['sumOpenInterestValue'])
-                const finalopeninterestvalue = parseInt(data2.at(29)['sumOpenInterestValue'])
-                const openinterestvaluevar = finalopeninterestvalue - earlyopeninterestvalue
-                const openinterestvaluevarp = (finalopeninterestvalue / earlyopeninterestvalue - 1) * 100
-                document.getElementById('1hoi').
-                    innerHTML = openinterestvaluevar
-                document.getElementById('1hpoi').
-                    innerHTML = openinterestvaluevarp.toFixed(2) + '%'
-                })
-        fetch(urlvalue4hr + ratiovalue4hr)
-            .then(function (response) {
-                return response.json()
-            })
-            .then(function (data3) {
-                const earlyopeninterestvalue = parseInt(data3.at(28)['sumOpenInterestValue'])
-                const finalopeninterestvalue = parseInt(data3.at(29)['sumOpenInterestValue'])
-                const openinterestvaluevar = finalopeninterestvalue - earlyopeninterestvalue
-                const openinterestvaluevarp = (finalopeninterestvalue / earlyopeninterestvalue - 1) * 100
-                document.getElementById('4hoi').
-                    innerHTML = openinterestvaluevar
-                document.getElementById('4hpoi').
-                    innerHTML = openinterestvaluevarp.toFixed(2) + '%'
-            })
-        fetch(urlvalue24hr + ratiovalue24hr)
-            .then(function (response) {
-                return response.json()
-            })
-            .then(function (data4) {
-                const earlyopeninterestvalue = parseInt(data4.at(28)['sumOpenInterestValue'])
-                const finalopeninterestvalue = parseInt(data4.at(29)['sumOpenInterestValue'])
-                const openinterestvaluevar = finalopeninterestvalue - earlyopeninterestvalue
-                const openinterestvaluevarp = (finalopeninterestvalue / earlyopeninterestvalue - 1) * 100
-                document.getElementById('24hoi').
-                    innerHTML = openinterestvaluevar
-                document.getElementById('24hpoi').
-                    innerHTML = openinterestvaluevarp.toFixed(2) + '%'
-            })
+                    return response.json()
+                }).then(function (dataQuinzeM) {
+                    dadosRecentesQuinzeM = Object.values(dataQuinzeM.at(29))
+                    dadosAnterioresQuinzeM = Object.values(dataQuinzeM.at(28))
+
+
+                    oi = dadosRecentesQuinzeM[3]
+                    openInterestQuinzeM = dadosRecentesQuinzeM[2]
+                    openInterestAnteriorQuinzeM = dadosAnterioresQuinzeM[2]
+
+                    varianciaQuinzeMinutos = (openInterestQuinzeM - openInterestAnteriorQuinzeM).toFixed(3)
+                    varianciaQuinzeMinutosPorcento = (((openInterestQuinzeM / openInterestAnteriorQuinzeM) - 1) * 100).toFixed(2) + '%'
+
+                }).then(
+                    fetch(umaHora)
+                        .then(function (response) {
+                            return response.json()
+                        }).then(function (dataUmaH) {
+
+                            dadosRecentesUmaH = Object.values(dataUmaH.at(29))
+                            dadosAnterioresUmaH = Object.values(dataUmaH.at(28))
+
+                            openInterestUmaH = dadosRecentesUmaH[2]
+                            openInterestAnteriorUmaH = dadosAnterioresUmaH[2]
+
+                            varianciaUmaH = (openInterestUmaH - openInterestAnteriorUmaH).toFixed(3)
+                            varianciaUmaHPorcento = (((openInterestUmaH / openInterestAnteriorUmaH) - 1) * 100).toFixed(2) + '%'
+
+                        }).then(
+                            fetch(quatroHoras)
+                                .then(function (response) {
+                                    return response.json()
+                                }).then(function (dataQuatroH) {
+
+                                    dadosRecentesQuatroH = Object.values(dataQuatroH.at(29))
+                                    dadosAnterioresQuatroH = Object.values(dataQuatroH.at(28))
+
+                                    openInterestQuatroH = dadosRecentesQuatroH[2]
+                                    openInterestAnteriorQuatroH = dadosAnterioresQuatroH[2]
+
+                                    varianciaQuatroH = (openInterestQuatroH - openInterestAnteriorQuatroH).toFixed(3)
+                                    varianciaQuatroHPorcento = (((openInterestQuatroH / openInterestAnteriorQuatroH) - 1) * 100).toFixed(2) + '%'
+
+                                })
+                                .then(
+                                    fetch(umDia)
+                                        .then(function (response) {
+                                            return response.json()
+                                        }).then(function (dataUmDia) {
+
+                                            dadosRecentesUmDia = Object.values(dataUmDia.at(29));
+                                            dadosAnterioresUmDia = Object.values(dataUmDia.at(28))
+
+
+                                            openInterestUmDia = dadosRecentesUmDia[2]
+                                            openInterestAnteriorUmDia = dadosAnterioresUmDia[2]
+
+                                            varianciaUmDia = (openInterestUmDia - openInterestAnteriorUmDia).toFixed(3)
+                                            varianciaUmDiaPorcento = (((openInterestUmDia / openInterestAnteriorUmDia) - 1) * 100).toFixed(2) + '%'
+
+                                            moeda = dadosRecentesUmDia[0]
+
+
+                                            var lista = new Array(moeda, openInterestQuinzeM, varianciaQuinzeMinutos, varianciaQuinzeMinutosPorcento, varianciaUmaH, varianciaUmaHPorcento, varianciaQuatroH, varianciaQuatroHPorcento, varianciaUmDia, varianciaUmDiaPorcento)
+                                            var linhasTabela = new Array(lista)
+
+
+                                            for (let j = 0, linhaBody = ''; j < lista.length; j++) {
+                                                // console.log(linhasTabela[j])
+                                                linhaBody = criaTag("tr");
+
+                                                for (let i = 0; i < linhasTabela.length; i++) {
+                                                    cel1 = criaCelula("td", linhasTabela[j][i])
+                                                    cel2 = criaCelula("td", linhasTabela[j][i + 1])
+                                                    cel3 = criaCelula("td", linhasTabela[j][i + 2])
+                                                    cel4 = criaCelula("td", linhasTabela[j][i + 3])
+                                                    cel5 = criaCelula("td", linhasTabela[j][i + 4])
+                                                    cel6 = criaCelula("td", linhasTabela[j][i + 5])
+                                                    cel7 = criaCelula("td", linhasTabela[j][i + 6])
+                                                    cel8 = criaCelula("td", linhasTabela[j][i + 7])
+                                                    cel9 = criaCelula("td", linhasTabela[j][i + 8])
+                                                    cel10 = criaCelula("td", linhasTabela[j][i + 9])
+
+                                                    linhaBody.appendChild(cel1)
+                                                    linhaBody.appendChild(cel2)
+                                                    linhaBody.appendChild(cel3)
+                                                    linhaBody.appendChild(cel4)
+                                                    linhaBody.appendChild(cel5)
+                                                    linhaBody.appendChild(cel6)
+                                                    linhaBody.appendChild(cel7)
+                                                    linhaBody.appendChild(cel8)
+                                                    linhaBody.appendChild(cel9)
+                                                    linhaBody.appendChild(cel10)
+                                                }
+                                                tbody.appendChild(linhaBody);
+
+
+
+
+                                            }
+
+
+                                        })
+
+                                ))
+
+                )
+
+
+        })
+
+
 
 
     </script>
-    
+
 </body>
 </html>

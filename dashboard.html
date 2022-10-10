@@ -6,7 +6,10 @@
     <title>Research</title>
     <link rel="stylesheet" type="text/css" href="css/styles.css" media="screen" />
     <link rel="stylesheet" type="text/css" href="css/fade.css" media="screen" />
-    <element onload="script">
+    
+        
+
+
 
 </head>
 <body class="body">
@@ -62,14 +65,31 @@
     <section class="section2">
         <div class="lowerpanel">
             <table id="lowerlsr">
+                <thead>
+                    <tr>
+                        <th><a>Symbol</a></th>
+                        <th><a>LSR</a></th>
+                        <th><a>Δ15m</a></th>
+                        <th><a>Δ15m %</a></th>
+                        <th><a>Δ1h</a></th>
+                        <th><a>Δ1h %</a></th>
+                        <th><a>Δ4h </a></th>
+                        <th><a>Δ4h %</a></th>
+                        <th><a>Δ24h </a></th>
+                        <th><a>Δ24h %</a></th>
+                    </tr>
+
+                </thead>
+               
             </table>
+            <div class="pagenumbers" id="pagination"> </div>
         </div>
     </section>
     <script src="script/lista.js"></script>
-    <script src="https://code.jquery.com/jquery-3.5.1.js"> </script>
-    <script src="https://cdn.datatables.net/1.12.1/js/jquery.dataTables.min.js"></script>
-    <script src="https://cdn.datatables.net/1.12.1/js/dataTables.bootstrap.min.js"></script>
-    <script>
+    <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.7.1/jquery.min.js" type="text/javascript"></script>
+    <link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/1.12.1/css/jquery.dataTables.css">
+    <script type="text/javascript" charset="utf8" src="https://cdn.datatables.net/1.12.1/js/jquery.dataTables.js"></script>
+    <script async>
 
 
         //CREATING TABLE
@@ -80,12 +100,12 @@
 
         let table = document.getElementById('lowerlsr')
 
-        let thead = criaTag("thead")
+        //let thead = criaTag("thead")
         let tbody = criaTag("tbody")
         let tfoot = criaTag("tfoot")
-        
-        let indicesTabela = ["SYMBOL", "LSR", "Δ15m", "Δ15m%", "Δ1h", "Δ1h%", "Δ4h", "Δ4h%", "Δ24h", "Δ24h%"]
-        let linhaHead = criaTag("tr")
+
+        // let indicesTabela = ["SYMBOL", "LSR", "Δ15m", "Δ15m%", "Δ1h", "Δ1h%", "Δ4h", "Δ4h%", "Δ24h", "Δ24h%"]
+        //let linhaHead = criaTag("tr")
 
         function criaCelula(tag, text) {
             tag = criaTag(tag);
@@ -93,18 +113,19 @@
             return tag;
         }
 
-        for (let j = 0; j < indicesTabela.length; j++) {
-            let th = criaCelula("th", indicesTabela[j]);
-            linhaHead.appendChild(th);
-        }
-        thead.appendChild(linhaHead)
+        // for (let j = 0; j < indicesTabela.length; j++) {
+        //     let th = criaCelula("th", indicesTabela[j]);
+        //     linhaHead.appendChild(th);
+        // }
+        // thead.appendChild(linhaHead)
 
-        table.appendChild(thead)
+        //  table.appendChild(thead)
         table.appendChild(tbody)
         table.appendChild(tfoot)
+       
 
         linhasTabela.forEach(i => {
-
+           
 
             // API LINKS
             const base = 'https://fapi.binance.com/futures/data/'
@@ -122,12 +143,14 @@
                     dadosRecentesQuinzeM = Object.values(dataQuinzeM.at(29))
                     dadosAnterioresQuinzeM = Object.values(dataQuinzeM.at(28))
 
+
+                    lsr = dadosRecentesQuinzeM[3]
                     longShortRatioQuinzeM = dadosRecentesQuinzeM[2]
                     longShortRatioAnteriorQuinzeM = dadosAnterioresQuinzeM[2]
 
                     varianciaQuinzeMinutos = (longShortRatioQuinzeM - longShortRatioAnteriorQuinzeM).toFixed(3)
                     varianciaQuinzeMinutosPorcento = (((longShortRatioQuinzeM / longShortRatioAnteriorQuinzeM) - 1) * 100).toFixed(2) + '%'
-
+                    
                 }).then(
                     fetch(umaHora)
                         .then(function (response) {
@@ -176,23 +199,26 @@
 
                                             moeda = dadosRecentesUmDia[0]
 
-                                            var lista = new Array(moeda, varianciaQuinzeMinutos, varianciaQuinzeMinutosPorcento, varianciaUmaH, varianciaUmaHPorcento, varianciaQuatroH, varianciaQuatroHPorcento, varianciaUmDia, varianciaUmDiaPorcento)
+
+                                            var lista = new Array(moeda, longShortRatioQuinzeM, varianciaQuinzeMinutos, varianciaQuinzeMinutosPorcento, varianciaUmaH, varianciaUmaHPorcento, varianciaQuatroH, varianciaQuatroHPorcento, varianciaUmDia, varianciaUmDiaPorcento)
                                             var linhasTabela = new Array(lista)
 
 
-                                            for (let j = 0; j < linhasTabela.length; j++) {
-                                               // console.log(linhasTabela[j])
-                                                linhaBody = criaTag("tr") 
+                                            for (let j = 0, linhaBody = ''; j < lista.length; j++) {
+                                                // console.log(linhasTabela[j])
+                                                linhaBody = criaTag("tr");
+
                                                 for (let i = 0; i < linhasTabela.length; i++) {
-                                                    cel1 = criaCelula("td", linhasTabela[j][0])
-                                                    cel2 = criaCelula("td", linhasTabela[j][1])
-                                                    cel3 = criaCelula("td", linhasTabela[j][2])
-                                                    cel4 = criaCelula("td", linhasTabela[j][3])
-                                                    cel5 = criaCelula("td", linhasTabela[j][4])
-                                                    cel6 = criaCelula("td", linhasTabela[j][5])
-                                                    cel7 = criaCelula("td", linhasTabela[j][6])
-                                                    cel8 = criaCelula("td", linhasTabela[j][7])
-                                                    cel9 = criaCelula("td", linhasTabela[j][8])
+                                                    cel1 = criaCelula("td", linhasTabela[j][i])
+                                                    cel2 = criaCelula("td", linhasTabela[j][i + 1])
+                                                    cel3 = criaCelula("td", linhasTabela[j][i + 2])
+                                                    cel4 = criaCelula("td", linhasTabela[j][i + 3])
+                                                    cel5 = criaCelula("td", linhasTabela[j][i + 4])
+                                                    cel6 = criaCelula("td", linhasTabela[j][i + 5])
+                                                    cel7 = criaCelula("td", linhasTabela[j][i + 6])
+                                                    cel8 = criaCelula("td", linhasTabela[j][i + 7])
+                                                    cel9 = criaCelula("td", linhasTabela[j][i + 8])
+                                                    cel10 = criaCelula("td", linhasTabela[j][i + 9])
 
                                                     linhaBody.appendChild(cel1)
                                                     linhaBody.appendChild(cel2)
@@ -203,22 +229,28 @@
                                                     linhaBody.appendChild(cel7)
                                                     linhaBody.appendChild(cel8)
                                                     linhaBody.appendChild(cel9)
+                                                    linhaBody.appendChild(cel10)
                                                 }
                                                 tbody.appendChild(linhaBody);
+
+
 
 
                                             }
 
 
-                                        })
+                                        }) 
 
+                            ))
 
-                                ))
-                    )
+                )
 
-        })  
+           
+        })
       
 
+  
+        
     </script>
     <footer>
     </footer>
