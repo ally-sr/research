@@ -6,6 +6,15 @@
     <title>Research</title>
     <link rel="stylesheet" type="text/css" href="css/styles.css" media="screen" />
     <link rel="stylesheet" type="text/css" href="css/fade.css" media="screen" />
+    <link rel="stylesheet" type="text/css" href="css/footable.standalone.css" media="screen" />
+    <link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/1.12.1/css/jquery.dataTables.css">
+    <script type="text/javascript" charset="utf8" src="https://cdn.datatables.net/1.12.1/js/jquery.dataTables.js"></script>
+    <script type="text/javascript" src="http://code.jquery.com/jquery-latest.min.js"></script>
+    <script src="script/moment.js"></script>
+    <script src="script/lista.js"></script>
+    <script src="script/footable.js"></script>
+    <script src="script/footable.paging.js"></script>
+    <script src="script/footable.sorting.js"></script>
 
 </head>
 <body class="body">
@@ -38,12 +47,12 @@
     </header>
 
     <section class="section1">
-        <div class="upperpanel">
+        <div class="upperpaneloi">
             <h1>
                 Open Interest
             </h1>
 
-            <table class="upperlsr">
+            <table class="upperlsroi">
                 <thead>
                     <tr>
                         <th>OI Global: <span id="oiglobal"> </span></th>
@@ -61,20 +70,20 @@
         </div>
     </section>
     <section class="section2">
-        <div class="lowerpanel">
-            <table id="loweroi">
+        <div class="lowerpaneloi">
+            <table id="loweroi" data-sorting="true">
                 <thead>
                     <tr>
                         <th>Symbol</th>
-                        <th>OI</th>
-                        <th>15m Δ</th>
-                        <th>15m Δ%</th>
-                        <th>1h Δ</th>
-                        <th>1h Δ%</th>
-                        <th>4h Δ</th>
-                        <th>4h Δ%</th>
-                        <th>24h Δ</th>
-                        <th>24h Δ%</th>
+                        <th datatype="numeric">OI</th>
+                        <th datatype="numeric">15m Δ</th>
+                        <th datatype="numeric">15m Δ%</th>
+                        <th datatype="numeric">1h Δ</th>
+                        <th datatype="numeric">1h Δ%</th>
+                        <th datatype="numeric">4h Δ</th>
+                        <th datatype="numeric">4h Δ%</th>
+                        <th datatype="numeric">24h Δ</th>
+                        <th datatype="numeric">24h Δ%</th>
 
 
                     </tr>
@@ -100,7 +109,7 @@
         let tbody = criaTag("tbody")
         let tfoot = criaTag("tfoot")
 
-        // let indicesTabela = ["SYMBOL", "LSR", "Δ15m", "Δ15m%", "Δ1h", "Δ1h%", "Δ4h", "Δ4h%", "Δ24h", "Δ24h%"]
+        let indicesTabela = ["SYMBOL", "LSR", "Δ15m", "Δ15m%", "Δ1h", "Δ1h%", "Δ4h", "Δ4h%", "Δ24h", "Δ24h%"]
         //let linhaHead = criaTag("tr")
 
         function criaCelula(tag, text) {
@@ -194,8 +203,9 @@
                                             varianciaUmDia = (openInterestUmDia - openInterestAnteriorUmDia).toFixed(3)
                                             varianciaUmDiaPorcento = (((openInterestUmDia / openInterestAnteriorUmDia) - 1) * 100).toFixed(2) + '%'
 
-                                            moeda = dadosRecentesUmDia[0]
 
+                                            currency = dadosRecentesUmDia[0]
+                                            moeda = currency.replace('USDT', '')
 
                                             var lista = new Array(moeda, openInterestQuinzeM, varianciaQuinzeMinutos, varianciaQuinzeMinutosPorcento, varianciaUmaH, varianciaUmaHPorcento, varianciaQuatroH, varianciaQuatroHPorcento, varianciaUmDia, varianciaUmDiaPorcento)
                                             var linhasTabela = new Array(lista)
@@ -229,7 +239,14 @@
                                                     linhaBody.appendChild(cel10)
                                                 }
                                                 tbody.appendChild(linhaBody);
+                                                if (table.length = linhasTabela.length) {
+                                                    $(document).ready(function () {
+                                                        $(table).footable()
 
+                                                    })
+
+
+                                                }
 
 
 
@@ -249,6 +266,7 @@
 
 
     </script>
-
+    <footer>
+    </footer>
 </body>
 </html>
