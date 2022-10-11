@@ -36,21 +36,24 @@
             </ul>
         </nav>
     </header>
-    <div class="upperpanel">
-        <h1> Order Book Depth </h1>
-        <script>
-            const url = 'https://fapi.binance.com/fapi/v1/'
-            const orderbookD = 'depth?symbol=ALICEUSDT'
-
-            fetch(url + orderbookD)
-                .then(function (response) {
-                    return response.json()
-                })
-                .then(function (data) {
-                    console.log(data)
-                })
-        </script>
-    </div>
+    <br /><br /><br /><br />
+     <div class="upperpanelobd">
+         <h1> Order Book Depth </h1>
+         <br />
+         <table class="upperobd">
+          <thead>
+            <tr>
+                <th>LSR Global: <span id="obdglobal"> </span></th>
+                <th>4h Δ: <span id="alt4h"> </span></th>
+              </tr>
+               <tr>
+                 <th>LSR Global Sum: <span id="obdglobalsum"> </span></th>
+                   <th>4h Δ: <span id="alt4hsum"> </span></th>
+                  </tr>
+             </thead>
+                          </table>
+                          <p><br />Atualizado pela útima vez em <br /> <span id="timestampobd"></span></p>
+                      </div>
     <div class="lowerpanelobd">
 
     </div>
