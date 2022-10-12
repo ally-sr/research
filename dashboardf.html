@@ -35,24 +35,21 @@
                 </li>
             </ul>
         </nav>
-    </header>
-    <div class="upperpanel">
+    </header><br /><br /><br />
+    <div id="upperpanelf"><br /><br />
         <h1> Funding </h1>
-        <script>
-            const url = 'https://fapi.binance.com/fapi/v1/'
-            const funding = 'fundingRate?symbol=BTCUSD'
-
-            fetch(url + funding)
-                .then(function (response) {
-                    return response.json()
-                })
-                .then(function (data) {
-                    console.log(data)
-                })
-        </script>
+        
     </div>
-    <div class="lowerpanel">
-
+    <div id="lowerpanelf">
+        <table id="lowerf">
+            <thead>
+                <tr>
+                    <th>SYMBOL <img class="filterf" src="imagens/filtericonaz.png" /> </th>
+                    <th datatype="numeric">FUNDING RATE<img class="filterf" src="imagens/filtericon.png" /></th> 
+                    <th></th>
+                </tr>
+            </thead>
+        </table>
     </div>
 </body>
 </html>

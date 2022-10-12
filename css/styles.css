@@ -40,6 +40,68 @@ body::-webkit-scrollbar-thumb {
 }
 
 
+#lowerpanelmv::-webkit-scrollbar {
+    width: 10px;
+}
+
+#lowerpanelmv::-webkit-scrollbar-track {
+    background: #190e48dd;
+}
+
+#lowerpanelmv::-webkit-scrollbar-thumb {
+    background-color: #5562f5;
+    border-radius: 4px;
+}
+
+
+
+#lowerpanelobd::-webkit-scrollbar {
+    width: 10px;
+}
+
+#lowerpanelobd::-webkit-scrollbar-track {
+    background: #190e48dd;
+}
+
+#lowerpanelobd::-webkit-scrollbar-thumb {
+    background-color: #5562f5;
+    border-radius: 4px;
+}
+
+
+
+
+#lowerpanelli::-webkit-scrollbar {
+    width: 10px;
+}
+
+#lowerpanelli::-webkit-scrollbar-track {
+    background: #190e48dd;
+}
+
+#lowerpanelli::-webkit-scrollbar-thumb {
+    background-color: #5562f5;
+    border-radius: 4px;
+}
+
+
+
+#lowerpanelf::-webkit-scrollbar {
+    width: 10px;
+}
+
+#lowerpanelf::-webkit-scrollbar-track {
+    background: #190e48dd;
+}
+
+#lowerpanelf::-webkit-scrollbar-thumb {
+    background-color: #5562f5;
+    border-radius: 4px;
+}
+
+
+
+
 .body {
     width: 95vw;
     height: 90vh;
@@ -56,6 +118,13 @@ body::-webkit-scrollbar-thumb {
     position:relative;
     left:80%;
     top:-12px;
+}
+
+.filterf {
+    max-width: 20px;
+    position: relative;
+    left: 30%;
+    top: -1px;
 }
 /* CORPO E LOGIN */
 
@@ -509,10 +578,14 @@ p {
     justify-content: center;
     margin: auto;
     margin-top: 5px;
+
 }
 
 .upperoi thead tr {
     margin: auto;
+    text-align: center;
+    position:relative;
+    left:5%;
 }
 
 
@@ -664,12 +737,150 @@ p {
     color: white;
 }
 
-.lowerpanel {
+#lowerpanelobd {
     justify-content: center;
     justify-items: center;
     align-items: center;
     align-content: center;
-    width: 85vw;
+    width:55vw;
+    height: 70vh;
+    max-height: 400px;
+    animation: fadein 2s;
+    margin: auto;
+    background-color: #04001536;
+    border-radius:5px;
+    margin-top: 2%;
+    overflow: scroll;
+    overflow-x: hidden;
+}
+
+
+
+
+#lowerobd {
+    position:relative;
+    left:12%;
+    width: 80%;
+    font-size: 63%;
+    font-family: sans-serif;
+    text-align:center;
+}
+
+#lowerobd thead th {
+        margin-block: 20px;
+    }
+
+    #lowerobd thead tr {
+        background-color: #040015;
+        color: #ece8e8;
+        text-align: center;
+        font-weight: bold;
+        width: 2%;
+    }
+
+    #lowerobd tr {
+        background-color: #0a0034;
+        text-align: center;
+        font-weight: bold;
+        width: 2%;
+    }
+
+        #lowerobd tr:nth-child(even) {
+            background-color: #0b0041;
+            text-align: center;
+            font-weight: bold;
+            width: 2%;
+        }
+
+    #lowerobd tbody tr:hover {
+        background-color: #190e48;
+        text-align: center;
+        font-weight: bold;
+        width: 2%;
+    }
+
+    #lowerobd tbody {
+        color: #ece8e8;
+        text-align: center;
+        font-weight: bold;
+        width: 2%;
+    }
+
+    #lowerobd th, td {
+        margin-top: 20px;
+        padding: 9px 35px;
+        border: 1px solid #404eed;
+        width: 1%
+    }
+
+    /* MARKET VOLUME*/
+
+#upperpanelmv{
+    justify-content: center;
+    align-items: center;
+    align-content: center;
+    width: 40vw;
+    height: 30vh;
+    max-height: 360px;
+    animation: fadein 2s;
+    margin: auto;
+    background-color: #040015;
+    border: .5px solid #5562f5;
+    border-radius: 10px;
+}
+.uppermv {
+    width: 100%;
+    max-width: 100vw;
+    font-size: 0.9em;
+    color: aqua;
+    justify-content: center;
+    align-items: center;
+    align-content: center;
+    font-family: sans-serif;
+    margin-top: 35px;
+    position: relative;
+    left: -11%;
+}
+
+
+
+#upperpanelmv p {
+    font-size: 0.6rem;
+    text-align: center;
+    align-content: center;
+    justify-content: center;
+    margin: auto;
+    margin-top: 5px;
+}
+
+#upperpanelmv h1, h2 {
+    font-size: 1.5rem;
+    text-align: center;
+    align-content: center;
+    justify-content: center;
+    margin: auto;
+    margin-top: 5px;
+    color: white;
+    font-family: sans-serif;
+}
+
+.uppermv thead tr {
+    margin: auto;
+    text-align: center;
+    position: relative;
+    left: 5%;
+}
+
+
+
+
+
+#lowerpanelmv {
+    justify-content: center;
+    justify-items: center;
+    align-items: center;
+    align-content: center;
+    width: 90vw;
     height: 70vh;
     max-height: 400px;
     animation: fadein 2s;
@@ -678,65 +889,333 @@ p {
     margin-top: 2%;
     margin-left: 6%;
     overflow: scroll;
-    overflow-x: hidden;
+    display:hidden;
 }
 
-
-
-
-#lowerlsr {
+#lowermv {
     width: 80%;
     font-size: 63%;
     font-family: sans-serif;
 }
 
-    #lowerlsr thead th {
-        display: flex;
+    #lowermv thead th {
         margin-block: 20px;
     }
 
-    #lowerlsr thead tr {
+    #lowermv thead tr {
         background-color: #040015;
         color: #ece8e8;
         text-align: center;
         font-weight: bold;
-        width: 2%;
+        width: 4%;
     }
 
-    #lowerlsr tr {
+    #lowermv tr {
         background-color: #0a0034;
         text-align: center;
         font-weight: bold;
         width: 2%;
     }
 
-        #lowerlsr tr:nth-child(even) {
+        #lowermv tr:nth-child(even) {
             background-color: #0b0041;
             text-align: center;
             font-weight: bold;
             width: 2%;
         }
 
-    #lowerlsr tbody tr:hover {
+    #lowermv tbody tr:hover {
         background-color: #190e48;
         text-align: center;
         font-weight: bold;
         width: 2%;
     }
 
-    #lowerlsr tbody {
+    #lowermv tbody {
         color: #ece8e8;
         text-align: center;
         font-weight: bold;
         width: 2%;
     }
 
-    #lowerlsr th, td {
+    #lowermv th, td {
         margin-top: 20px;
         padding: 9px 35px;
         border: 1px solid #404eed;
         width: 1%
     }
+
+/* LIQUIDATIONS */
+
+#upperpanelli {
+    justify-content: center;
+    align-items: center;
+    align-content: center;
+    width: 40vw;
+    height: 30vh;
+    max-height: 360px;
+    animation: fadein 2s;
+    margin: auto;
+    background-color: #040015;
+    border: .5px solid #5562f5;
+    border-radius: 10px;
+}
+
+.upperli {
+    width: 100%;
+    max-width: 100vw;
+    font-size: 0.9em;
+    color: aqua;
+    justify-content: center;
+    align-items: center;
+    align-content: center;
+    font-family: sans-serif;
+    margin-top: 35px;
+    position: relative;
+    left: -11%;
+}
+
+
+
+#upperpanelli p {
+    font-size: 0.6rem;
+    text-align: center;
+    align-content: center;
+    justify-content: center;
+    margin: auto;
+    margin-top: 5px;
+}
+
+#upperpanelli h1, h2 {
+    font-size: 1.5rem;
+    text-align: center;
+    align-content: center;
+    justify-content: center;
+    margin: auto;
+    margin-top: 5px;
+    color: white;
+    font-family: sans-serif;
+}
+
+.upperli thead tr {
+    margin: auto;
+    text-align: center;
+    position: relative;
+    left: 5%;
+}
+
+
+
+
+
+#lowerpanelli {
+    justify-content: center;
+    justify-items: center;
+    align-items: center;
+    align-content: center;
+    width: 90vw;
+    height: 70vh;
+    max-height: 400px;
+    animation: fadein 2s;
+    margin: auto;
+    background-color: #04001536;
+    margin-top: 2%;
+    margin-left: 6%;
+    overflow: scroll;
+    display: hidden;
+}
+
+#lowerli {
+    width: 80%;
+    font-size: 63%;
+    font-family: sans-serif;
+}
+
+    #lowerli thead th {
+        margin-block: 20px;
+    }
+
+    #lowerli thead tr {
+        background-color: #040015;
+        color: #ece8e8;
+        text-align: center;
+        font-weight: bold;
+        width: 4%;
+    }
+
+    #lowerli tr {
+        background-color: #0a0034;
+        text-align: center;
+        font-weight: bold;
+        width: 2%;
+    }
+
+        #lowerli tr:nth-child(even) {
+            background-color: #0b0041;
+            text-align: center;
+            font-weight: bold;
+            width: 2%;
+        }
+
+    #lowerli tbody tr:hover {
+        background-color: #190e48;
+        text-align: center;
+        font-weight: bold;
+        width: 2%;
+    }
+
+    #lowerli tbody {
+        color: #ece8e8;
+        text-align: center;
+        font-weight: bold;
+        width: 2%;
+    }
+
+    #lowerli th, td {
+        margin-top: 20px;
+        padding: 9px 35px;
+        border: 1px solid #404eed;
+        width: 1%
+    }
+
+
+
+/* FUNDING */
+
+#upperpanelf {
+    justify-content: center;
+    align-items: center;
+    align-content: center;
+    width: 40vw;
+    height: 30vh;
+    max-height: 360px;
+    animation: fadein 2s;
+    margin: auto;
+    background-color: #040015;
+    border: .5px solid #5562f5;
+    border-radius: 10px;
+}
+
+.upperf {
+    width: 100%;
+    max-width: 100vw;
+    font-size: 0.9em;
+    color: aqua;
+    justify-content: center;
+    align-items: center;
+    align-content: center;
+    font-family: sans-serif;
+    margin-top: 35px;
+    position: relative;
+    left: -11%;
+}
+
+
+
+#upperpanelf p {
+    font-size: 0.6rem;
+    text-align: center;
+    align-content: center;
+    justify-content: center;
+    margin: auto;
+    margin-top: 5px;
+}
+
+#upperpanelf h1, h2 {
+    font-size: 1.5rem;
+    text-align: center;
+    align-content: center;
+    justify-content: center;
+    margin: auto;
+    margin-top: 5px;
+    color: white;
+    font-family: sans-serif;
+}
+
+.upperf thead tr {
+    margin: auto;
+    text-align: center;
+    position: relative;
+    left: 5%;
+}
+
+
+
+
+
+#lowerpanelf {
+    justify-content: center;
+    justify-items: center;
+    align-items: center;
+    align-content: center;
+    width: 90vw;
+    height: 70vh;
+    max-height: 400px;
+    animation: fadein 2s;
+    margin: auto;
+    background-color: #04001536;
+    margin-top: 2%;
+    margin-left: 6%;
+    overflow: scroll;
+    display: hidden;
+}
+
+#lowerf {
+    width: 60%;
+    font-size: 62%;
+    font-family: sans-serif;
+    position:relative;
+    left:18%
+}
+
+    #lowerf thead th {
+        margin-block: 20px;
+        width:5%
+    }
+
+    #lowerf thead tr {
+        background-color: #040015;
+        color: #ece8e8;
+        text-align: center;
+        font-weight: bold;
+        width: 5%;
+    }
+
+    #lowerf tr {
+        background-color: #0a0034;
+        text-align: center;
+        font-weight: bold;
+        width: 5%;
+    }
+
+        #lowerf tr:nth-child(even) {
+            background-color: #0b0041;
+            text-align: center;
+            font-weight: bold;
+            width: 2%;
+        }
+
+    #lowerf tbody tr:hover {
+        background-color: #190e48;
+        text-align: center;
+        font-weight: bold;
+        width: 2%;
+    }
+
+    #lowerf tbody {
+        color: #ece8e8;
+        text-align: center;
+        font-weight: bold;
+        width: 2%;
+    }
+
+    #lowerf th, td {
+        margin-top: 20px;
+        padding: 9px 35px;
+        border: 1px solid #404eed;
+        width: 1%
+    }
+
 
 
 /* MEDIA QUERYS */
