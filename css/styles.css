@@ -597,22 +597,23 @@ p {
     justify-items: center;
     align-items: center;
     align-content: center;
-    width: 90vw;
+    width: 98vw;
     height: 70vh;
     max-height: 400px;
     animation: fadein 2s;
     margin: auto;
     background-color: #04001536;
     margin-top: 2%;
-    margin-left: 6%;
     overflow: scroll;
     overflow-x: hidden;
 }
 
 #loweroi {
     width: 80%;
-    font-size: 63%;
+    font-size: 61%;
     font-family: sans-serif;
+    margin:auto;
+    position:relative;
 }
 
 #loweroi thead th {
@@ -880,26 +881,30 @@ p {
     justify-items: center;
     align-items: center;
     align-content: center;
-    width: 90vw;
+    width: 60vw;
     height: 70vh;
     max-height: 400px;
     animation: fadein 2s;
     margin: auto;
     background-color: #04001536;
     margin-top: 2%;
-    margin-left: 6%;
+    margin-left: 20%;
     overflow: scroll;
     display:hidden;
 }
 
 #lowermv {
-    width: 80%;
-    font-size: 63%;
+    width: 90%;
+    font-size: 60%;
     font-family: sans-serif;
+    position: relative;
+    margin:auto;
 }
 
     #lowermv thead th {
-        margin-block: 20px;
+        margin-block: 10px;
+        width:20%;
+        padding:10px 5px 10px 5px;
     }
 
     #lowermv thead tr {
@@ -907,14 +912,14 @@ p {
         color: #ece8e8;
         text-align: center;
         font-weight: bold;
-        width: 4%;
+        width: 10%;
     }
 
     #lowermv tr {
         background-color: #0a0034;
         text-align: center;
         font-weight: bold;
-        width: 2%;
+        width: 8%;
     }
 
         #lowermv tr:nth-child(even) {
@@ -1148,24 +1153,24 @@ p {
     justify-items: center;
     align-items: center;
     align-content: center;
-    width: 90vw;
+    width: 40vw;
     height: 70vh;
     max-height: 400px;
     animation: fadein 2s;
     margin: auto;
     background-color: #04001536;
     margin-top: 2%;
-    margin-left: 6%;
+    margin-left: 29%;
     overflow: scroll;
     display: hidden;
 }
 
 #lowerf {
-    width: 60%;
+    width: 55%;
     font-size: 62%;
     font-family: sans-serif;
     position:relative;
-    left:18%
+    margin:auto;
 }
 
     #lowerf thead th {

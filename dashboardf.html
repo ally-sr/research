@@ -6,6 +6,15 @@
     <title>Research</title>
     <link rel="stylesheet" type="text/css" href="css/styles.css" media="screen" />
     <link rel="stylesheet" type="text/css" href="css/fade.css" media="screen" />
+    <link rel="stylesheet" type="text/css" href="css/footable.standalone.css" media="screen" />
+    <script type="text/javascript" src="http://code.jquery.com/jquery-latest.min.js"></script>
+    <script type="text/javascript" charset="utf8" src="https://cdn.datatables.net/1.12.1/js/jquery.dataTables.js"></script>
+    <link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/1.12.1/css/jquery.dataTables.css">
+    <script src="script/moment.js"></script>
+    <script src="script/lista.js"></script>
+    <script src="script/footable.js"></script>
+    <script src="script/footable.paging.js"></script>
+    <script src="script/footable.sorting.js"></script>
 
 </head>
 <body class="body">
@@ -36,20 +45,110 @@
             </ul>
         </nav>
     </header><br /><br /><br />
-    <div id="upperpanelf"><br /><br />
-        <h1> Funding </h1>
-        
-    </div>
-    <div id="lowerpanelf">
-        <table id="lowerf">
-            <thead>
-                <tr>
-                    <th>SYMBOL <img class="filterf" src="imagens/filtericonaz.png" /> </th>
-                    <th datatype="numeric">FUNDING RATE<img class="filterf" src="imagens/filtericon.png" /></th> 
-                    <th></th>
-                </tr>
-            </thead>
-        </table>
-    </div>
-</body>
-</html>
+    <section>
+        <div id="upperpanelf">
+            <br /><br />
+            <h1> Funding </h1>
+
+        </div>
+    </section>
+    <section>
+        <div id="lowerpanelf">
+            <table id="lowerf">
+                <thead>
+                    <tr>
+                        <th>SYMBOL <img class="filterf" src="imagens/filtericonaz.png" /> </th>
+                        <th datatype="numeric">FUNDING RATE<img class="filterf" src="imagens/filtericon.png" /></th>
+                    </tr>
+                </thead>
+            </table>
+        </div>
+    </section>
+    <script src="script/lista.js"></script>
+    <script>
+
+        //CREATING TABLE
+
+        function criaTag(elemento) {
+            return document.createElement(elemento)
+        }
+
+        let table = document.getElementById('lowerf')
+
+        //let thead = criaTag("thead")
+        let tbody = criaTag("tbody")
+        let tfoot = criaTag("tfoot")
+
+        let indicesTabela = ["SYMBOL", "Funding Rate"]
+        //let linhaHead = criaTag("tr")
+
+        function criaCelula(tag, text) {
+            tag = criaTag(tag);
+            tag.textContent = text;
+            return tag;
+        }
+
+        // for (let j = 0; j < indicesTabela.length; j++) {
+        //     let th = criaCelula("th", indicesTabela[j]);
+        //     linhaHead.appendChild(th);
+        // }
+        // thead.appendChild(linhaHead)
+
+        //  table.appendChild(thead)
+        table.appendChild(tbody)
+        table.appendChild(tfoot)
+
+
+        linhasTabela.forEach(i => {
+
+
+            // API LINKS
+            const base = 'https://fapi.binance.com/fapi/v1/'
+            const comp = base + 'fundingRate?symbol=' + i
+
+            // FETCHING DATA
+
+            fetch(comp)
+                .then(function (response) {
+                    return response.json()
+                }).then(function (fundingR) {
+                    data = Object.values(fundingR.at(29))
+                    curr = data[0]
+                    fundingRate = data[2]
+
+                    moeda = curr.replace('USDT', '')
+
+                    var lista = new Array(moeda, fundingRate)
+                    var linhasTabela = new Array(lista)
+
+
+                    for (let j = 0, linhaBody = ''; j < lista.length; j++) {
+                        // console.log(linhasTabela[j])
+                        linhaBody = criaTag("tr");
+
+                        for (let i = 0; i < linhasTabela.length; i++) {
+                            cel1 = criaCelula("td", linhasTabela[j][i])
+                            cel2 = criaCelula("td", linhasTabela[j][i + 1])
+
+                            linhaBody.appendChild(cel1)
+                            linhaBody.appendChild(cel2)
+
+                        }
+                        tbody.appendChild(linhaBody);
+
+                        if (table.length = linhasTabela.length) {
+                            $(document).ready(function () {
+                                $(table).footable()
+
+                            })
+
+                        }
+                    }
+                })
+        })
+
+
+    </script>
+
+</body >
+</html >

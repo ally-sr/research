@@ -6,6 +6,15 @@
     <title>Research</title>
     <link rel="stylesheet" type="text/css" href="css/styles.css" media="screen" />
     <link rel="stylesheet" type="text/css" href="css/fade.css" media="screen" />
+    <link rel="stylesheet" type="text/css" href="css/footable.standalone.css" media="screen" />
+    <link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/1.12.1/css/jquery.dataTables.css">
+    <script type="text/javascript" src="http://code.jquery.com/jquery-latest.min.js"></script>
+    <script type="text/javascript" charset="utf8" src="https://cdn.datatables.net/1.12.1/js/jquery.dataTables.js"></script>
+    <script src="script/moment.js"></script>
+    <script src="script/lista.js"></script>
+    <script src="script/footable.js"></script>
+    <script src="script/footable.paging.js"></script>
+    <script src="script/footable.sorting.js"></script>
 
 </head>
 <body class="body">
@@ -37,40 +46,194 @@
         </nav>
     </header>
     <br /><br /><br />
-    <div id="upperpanelmv"><br /><br />
-        <h1> Market Volume </h1><br />
-    <script class="lsr" src="app.js"></script>
-</div>
-    <div id="lowerpanelmv">
-        <table id="lowermv">
-            <thead>
-                <tr>
-                    <th><br />SYMBOL <img class="filter" src="imagens/filtericonaz.png" /></th>
-                    <th datatype="numeric"><br />15m x Mean<img class="filter" src="imagens/filtericon.png" /></th>
-                    <th datatype="numeric"><br />15m Buy<img class="filter" src="imagens/filtericon.png" /></th>
-                    <th datatype="numeric"><br />15m Sell<img class="filter" src="imagens/filtericon.png" /></th>
-                    <th datatype="numeric"><br /> 15m Δ<img class="filter" src="imagens/filtericon.png" /></th>
-                    <th datatype="numeric"><br /> 15m Δ%<img class="filter" src="imagens/filtericon.png" /></th>
-                    <th datatype="numeric"><br />1h Buy<img class="filter" src="imagens/filtericon.png" /></th>
-                    <th datatype="numeric"><br />1h Sell<img class="filter" src="imagens/filtericon.png" /></th>
-                    <th datatype="numeric"><br />1h Δ<img class="filter" src="imagens/filtericon.png" /></th>
-                    <th datatype="numeric"><br />1h Δ%<img class="filter" src="imagens/filtericon.png" /></th>
-                    <th datatype="numeric"><br />4h Buy<img class="filter" src="imagens/filtericon.png" /></th>
-                    <th datatype="numeric"><br />4h Sell<img class="filter" src="imagens/filtericon.png" /></th>
-                    <th datatype="numeric"><br />4h Δ<img class="filter" src="imagens/filtericon.png" /></th>
-                    <th datatype="numeric"><br />4h Δ%<img class="filter" src="imagens/filtericon.png" /></th>
-                    <th datatype="numeric"><br />24h Buy<img class="filter" src="imagens/filtericon.png" /></th>
-                    <th datatype="numeric"><br />24h Sell<img class="filter" src="imagens/filtericon.png" /></th>
-                    <th datatype="numeric"><br />24h Δ<img class="filter" src="imagens/filtericon.png" /></th>
-                    <th datatype="numeric"><br />24h Δ%<img class="filter" src="imagens/filtericon.png" /></th>
-                    <th></th>
-                    <th></th>
-                </tr>
-            </thead>
-        </table>
-    </div><br /><br /><br /><br /><br />
-    <footer>
+    <section>
+        <div id="upperpanelmv">
+            <br /><br />
+            <h1> Market Volume </h1><br />
+        </div>
+    </section>
+    <section>
+        <div id="lowerpanelmv">
+            <table id="lowermv">
+                <thead>
+                    <tr>
+                        <th>SYMBOL</th>
+                        <th datatype="numeric">15m Buy/Sell Ratio</th>
+                        <th datatype="numeric">1h Buy/Sell Ratio</th>
+                        <th datatype="numeric">4h Buy/Sell Ratio</th>
+                        <th datatype="numeric">24h Buy/Sell Ratio</th>
+                    </tr>
+                </thead>
+            </table>
+        </div><br /><br /><br /><br /><br />
+    </section>
+    <script src="script/lista.js"></script>
+    <script>
 
+
+        //CREATING TABLE
+
+        function criaTag(elemento) {
+            return document.createElement(elemento)
+        }
+
+        let table = document.getElementById('lowermv')
+
+        //let thead = criaTag("thead")
+        let tbody = criaTag("tbody")
+        let tfoot = criaTag("tfoot")
+
+        let indicesTabela = ["SYMBOL", "15m Buy/Sell Ratio", "1h Buy/Sell Ratio", "4h Buy/Sell Ratio", "25h Buy/Sell Ratio"]
+        //let linhaHead = criaTag("tr")
+
+        function criaCelula(tag, text) {
+            tag = criaTag(tag);
+            tag.textContent = text;
+            return tag;
+        }
+
+        // for (let j = 0; j < indicesTabela.length; j++) {
+        //     let th = criaCelula("th", indicesTabela[j]);
+        //     linhaHead.appendChild(th);
+        // }
+        // thead.appendChild(linhaHead)
+
+        //  table.appendChild(thead)
+        table.appendChild(tbody)
+        table.appendChild(tfoot)
+
+
+        linhasTabela.forEach(i => {
+
+
+            // API LINKS
+            const base = 'https://fapi.binance.com/futures/data'
+            const quinzeMinutos = base + '/takerlongshortRatio?period=15m&symbol=' + i
+            const umaHora = base + '/takerlongshortRatio?period=1h&symbol=' + i
+            const quatroHoras = base + '/takerlongshortRatio?period=4h&symbol=' + i
+            const umDia = base + '/takerlongshortRatio?period=1d&symbol=' + i
+
+
+            // FETCHING CURRENCY
+
+            const currency = 'https://fapi.binance.com/futures/data/globalLongShortAccountRatio?symbol=' + i + '&period=15m'
+
+
+
+            fetch(currency)
+                .then(function (response) {
+                    return response.json()
+                }).then(function (curr) {
+                    dados = Objetc.values(curr.at(29))
+                    moeda = dados[0]
+                    return moeda
+                })
+
+
+
+
+
+            // FETCHING DATA
+
+            fetch(quinzeMinutos)
+                .then(function (response) {
+                    return response.json()
+                }).then(function (dataQuinzeM) {
+                    dadosRecentesQuinzeM = Object.values(dataQuinzeM.at(28))
+
+
+                    buySellRatio15 = dadosRecentesQuinzeM[0]
+
+
+                }).then(
+                    fetch(umaHora)
+                        .then(function (response) {
+                            return response.json()
+                        }).then(function (dataUmaH) {
+                            dadosRecentesUmaH = Object.values(dataUmaH.at(29))
+
+                            buySellRatio1h = dadosRecentesUmaH[0]
+
+                        }).then(
+                            fetch(quatroHoras)
+                                .then(function (response) {
+                                    return response.json()
+                                }).then(function (dataQuatroH) {
+                                    dadosRecentesQuatroH = Object.values(dataQuatroH.at(29))
+
+                                    buySellRatio4h = dadosRecentesQuatroH[0]
+
+                                })
+                                .then(
+                                    fetch(umDia)
+                                        .then(function (response) {
+                                            return response.json()
+                                        }).then(function (dataUmDia) {
+                                            dadosRecentesUmDia = Object.values(dataUmDia.at(29))
+
+                                            buySellRatio24h = dadosRecentesUmDia[0]
+
+                                        }).then(
+                                            fetch(currency)
+                                                .then(function (response) {
+                                                    return response.json()
+                                                }).then(function (curr) {
+                                                    dados = Object.values(curr.at(29))
+                                                    moeda = dados[0]
+
+                                                    var lista = new Array(moeda, buySellRatio15, buySellRatio1h, buySellRatio4h, buySellRatio24h)
+                                                    var linhasTabela = new Array(lista)
+
+
+                                                    for (let j = 0, linhaBody = ''; j < lista.length; j++) {
+                                                        // console.log(linhasTabela[j])
+                                                        linhaBody = criaTag("tr");
+
+                                                        for (let i = 0; i < linhasTabela.length; i++) {
+                                                            cel1 = criaCelula("td", linhasTabela[j][i])
+                                                            cel2 = criaCelula("td", linhasTabela[j][i + 1])
+                                                            cel3 = criaCelula("td", linhasTabela[j][i + 2])
+                                                            cel4 = criaCelula("td", linhasTabela[j][i + 3])
+                                                            cel5 = criaCelula("td", linhasTabela[j][i + 4])
+
+
+                                                            linhaBody.appendChild(cel1)
+                                                            linhaBody.appendChild(cel2)
+                                                            linhaBody.appendChild(cel3)
+                                                            linhaBody.appendChild(cel4)
+                                                            linhaBody.appendChild(cel5)
+                                                            tbody.appendChild(linhaBody);
+                                                            
+
+                                                        }
+                                                        if (table.length = linhasTabela.length) {
+                                                            $(document).ready(function () {
+                                                                $(table).footable()
+
+                                                            })
+
+
+                                                        }
+
+
+
+                                                    }
+
+                                                })
+
+                                        ))
+
+                            
+                     )
+
+           )         
+        })
+
+
+
+
+    </script>
+    <footer>
     </footer>
 </body>
 </html>
